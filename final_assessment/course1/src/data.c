@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include "data.h"
 #include "memory.h"
+#include "stats.h"
 #include <math.h>
 
 /***********************************************************
@@ -35,7 +36,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	
 	// Case where data = 0
 	if (data == 0) {
-		*ptr = 0;
+		*ptr = '0';
 		*(ptr+1) = 0;
 		return 2;
 	}
@@ -59,7 +60,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 		
 		// If hex A - F
 		if (cur_char >= 10 && cur_char <= 15) {
-			array[str_len] = cur_char + 0x37;
+			array[str_len] = cur_char + 0x41;
 		}
 		
 		data = data / base;
@@ -73,7 +74,11 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	}
 	
 	// Reverse the order of the string
-	ptr = my_reverse(array, str_len);
+	for(uint8_t i=0 ; i<str_len; i++){
+		*(ptr+i)=array[str_len-1-i];
+	}
+	
+	// print_array(ptr, str_len);
 	
 	return str_len;
 }
@@ -84,17 +89,17 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
 	uint32_t multiplier = 0;
 	uint32_t number = 0;
 	uint8_t cur_digit = 0;
-	
-	for (size_t i=0; i<digits; i++) {
-		if (*ptr == '-') {
+	// printf("digits = %d\n", digits);
+	for (size_t i=0; i<digits-1; i++) {
+		if (*(ptr+i) == '-') {
 			is_negative = 1;
 			continue;
 		}
 		cur_digit = *(ptr+i);
-		multiplier = pow(base, (digits -i - 1));
+		multiplier = pow(base, (digits -i - 2));
 		
 		if (cur_digit >= 'A' && cur_digit <= 'F') {
-			cur_digit -= 0x37;
+			cur_digit -= 0x41;
 		}
 		else if (cur_digit >= '0' && cur_digit <= '9') {
 			cur_digit -= 0x30;

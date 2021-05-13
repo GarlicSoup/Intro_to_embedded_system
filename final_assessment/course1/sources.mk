@@ -29,9 +29,9 @@ endif
 
 # Include Paths
 ifeq ($(PLATFORM), MSP432)
-        INCLUDES = -I /include/common \
-                   -I /include/CMSIS \
-                   -I /include/msp432
+        INCLUDES = -I ./include/common \
+                   -I ./include/CMSIS \
+                   -I ./include/msp432
 else 
-        INCLUDES = -I /include/common
+        INCLUDES = -I ./include/common
 endif

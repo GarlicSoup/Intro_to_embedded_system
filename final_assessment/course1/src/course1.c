@@ -95,6 +95,7 @@ int8_t test_memmove1() {
   if (! set ) 
   {
     return TEST_ERROR;
+		printf("TEST_ERROR: test_memmove11()\n");
   }
   
   ptra = &set[0];
@@ -115,6 +116,7 @@ int8_t test_memmove1() {
     if (set[i + 16] != i)
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_memmove12()\n");
     }
   }
 
@@ -135,6 +137,7 @@ int8_t test_memmove2() {
   if (! set )
   {
     return TEST_ERROR;
+		printf("TEST_ERROR: test_memmove21()\n");
   }
   ptra = &set[0];
   ptrb = &set[8];
@@ -153,6 +156,7 @@ int8_t test_memmove2() {
     if (set[i + 8] != i)
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_memmove22()\n");
     }
   }
 
@@ -173,6 +177,7 @@ int8_t test_memmove3() {
   if (! set ) 
   {
     return TEST_ERROR;
+		printf("TEST_ERROR: test_memmove31()\n");
   }
   ptra = &set[8];
   ptrb = &set[0];
@@ -192,6 +197,7 @@ int8_t test_memmove3() {
     if (set[i] != (i + 8))
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_memmove32()\n");
     }
   }
 
@@ -214,6 +220,7 @@ int8_t test_memcopy() {
   if (! set ) 
   {
     return TEST_ERROR;
+		printf("TEST_ERROR: test_memcopy()1\n");
   }
   ptra = &set[0];
   ptrb = &set[16];
@@ -232,6 +239,7 @@ int8_t test_memcopy() {
     if (set[i+16] != i)
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_memcopy()2\n");
     }
   }
 
@@ -252,6 +260,7 @@ int8_t test_memset()
   if (! set )
   {
     return TEST_ERROR;
+		printf("TEST_ERROR: test_memset()1\n");
   }
   ptra = &set[0];
   ptrb = &set[16];
@@ -274,10 +283,12 @@ int8_t test_memset()
     if (set[i] != 0xFF)
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_memset()2\n");
     }
     if (set[16 + i] != 0)
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_memset()3\n");
     }
   }
   
@@ -301,6 +312,7 @@ int8_t test_reverse()
   if (! copy )
   {
     return TEST_ERROR;
+		printf("TEST_ERROR: test_reverse()1\n");
   }
   
   my_memcopy(set, copy, MEM_SET_SIZE_B);
@@ -318,6 +330,7 @@ int8_t test_reverse()
   }
 
   free_words( (uint32_t*)copy );
+	printf("TEST_ERROR: test_reverse()2\n");
   return ret;
 }
 

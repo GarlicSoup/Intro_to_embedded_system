@@ -48,16 +48,16 @@ SRC_DIR := ./src
 OBJ_DIR := ./obj
 INC_DIR := ./include
 
-SOURCES = 	$(SRC_DIR)/main.c \
-			$(SRC_DIR)/memory.c \
-			$(SRC_DIR)/stats.c \
-			$(SRC_DIR)/data.c \
-			$(SRC_DIR)/course1.c 
-INCLUDES = -I include/common/
+# SOURCES = 	$(SRC_DIR)/main.c \
+			# $(SRC_DIR)/memory.c \
+			# $(SRC_DIR)/stats.c \
+			# $(SRC_DIR)/data.c \
+			# $(SRC_DIR)/course1.c 
+# INCLUDES = -I include/common/
 
 # Compile time switches
-COURSE1 = false
-VERBOSE = false
+COURSE1 = true
+VERBOSE = true
 
 # General flags for both platforms.
 G_FLAGS = -std=c99 \
@@ -88,7 +88,7 @@ ifeq ($(PLATFORM), MSP432)
 			$(EXTRA)
 	CPPFLAGS = -DMSP432 $(INCLUDES)
 	LDFLAGS = -Wl,-Map=$(TARGET).map \
-				-L ../ $(LINKER_FILE)
+				-L ../ $(LINKER_FILE) -lm
 	OBJDUMP = arm-none-eabi-objdump
 	SIZE = arm-none-eabi-size 
 
@@ -97,7 +97,7 @@ else
 	CC = gcc
 	CFLAGS = $(G_FLAGS)
 	CPPFLAGS = -DHOST $(INCLUDES)
-	LDFLAGS = -Wl,-Map=$(TARGET).map
+	LDFLAGS = -Wl,-Map=$(TARGET).map -lm
 	OBJDUMP = objdump
 	SIZE = size
 endif
@@ -147,7 +147,7 @@ compile-all: $(OBJS)
 build: $(TARGET).out  $(TARGET).asm
 
 $(TARGET).out: $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) -o $@ $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ 
 	$(SIZE) $(TARGET).out
 
 # Build all and run file
@@ -157,4 +157,4 @@ run: $(TARGET).out
 
 .PHONY: clean
 clean:
-	rm -f $(TARGET).asm $(TARGET).out $(TARGET).map .src/{FILES}
+	rm -f $(TARGET).asm $(TARGET).out $(TARGET).map ./src/*.o ./src/*.map ./src/*.asm ./src/*.i

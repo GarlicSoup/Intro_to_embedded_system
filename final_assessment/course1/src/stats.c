@@ -127,8 +127,8 @@ void sort_array(uint8_t arr[], uint8_t array_length) {
 void print_array(uint8_t arr[], uint8_t array_length) {
   #ifdef VERBOSE
     // Loop through and print the array
-    for(uint8_t i=0; i<arrayLength; i++){
-      PRINTF("array[%u](0x%x): %u\n", i, arr+i, *(arr + sizeof(uint8_t)*i));
+    for(uint8_t i=0; i<array_length; i++){
+      PRINTF("%d \t ", *(arr + i));
     }
     PRINTF("\n");
   #endif
