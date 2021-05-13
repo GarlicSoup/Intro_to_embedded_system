@@ -22,6 +22,7 @@
 
 
 #include <stdio.h>
+#include <stdint.h>
 #include "stats.h"
 #include "platform.h"
 
@@ -176,15 +177,11 @@ uint8_t find_median(uint8_t arr[], uint8_t array_length) {
   return median;
 }
 
-
-void print_statistics(uint8_tarr[], uint8_t array_length) {
-  float mean, median;
-  uint8_t maximum, minimum;
-
+void print_statistics(uint8_t arr[], uint8_t array_length) {
   PRINTF("\nThe mean of the array: %d\n", find_mean(arr, array_length));
   PRINTF("The median of the array: %d\n", find_median(arr, array_length));
   PRINTF("The minimum of the array: %d\n", find_minimum(arr, array_length));
   PRINTF("The maximum of the array: %d\n", find_maximum(arr, array_length));
-  PRINTF("Array Size: %u\n", arrayLength);
-  print_array(arr, arrayLength);
+  PRINTF("Array Size: %u\n", array_length);
+  print_array(arr, array_length);
 }

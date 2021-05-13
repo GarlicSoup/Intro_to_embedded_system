@@ -22,6 +22,9 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+#include <stdint.h>
+#include <stdlib.h>
+
 /**
  * @brief Sets a value of a data array 
  *
@@ -184,6 +187,6 @@ int32_t * reserve_words(size_t length);
  *
  * @return void.
  */
-void free_words(int32_t * src);
+void free_words(uint32_t * src);
 
 #endif /* __MEMORY_H__ */

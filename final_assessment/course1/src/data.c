@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include "data.h"
 #include "memory.h"
+#include <math.h>
 
 /***********************************************************
  Function Definitions
@@ -28,12 +29,12 @@
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	
 	uint8_t array_size = 12;
-	uint8_t array[array_size] = 0;
+	uint8_t array[array_size];
 	uint8_t is_negative = 0;
 	uint8_t str_len = 0;
 	
 	// Case where data = 0
-	if (data = 0) {
+	if (data == 0) {
 		*ptr = 0;
 		*(ptr+1) = 0;
 		return 2;
@@ -80,20 +81,20 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
 	
 	uint8_t is_negative = 0;
-	uint8_t multiplier = 0;
-	uint8_t number = 0;
+	uint32_t multiplier = 0;
+	uint32_t number = 0;
 	uint8_t cur_digit = 0;
 	
 	for (size_t i=0; i<digits; i++) {
-		if (*ptr = '-') {
+		if (*ptr == '-') {
 			is_negative = 1;
 			continue;
 		}
-		cur_digit = *(ptr+i)
-		multiplier = pow(base, digit -i - 1);
+		cur_digit = *(ptr+i);
+		multiplier = pow(base, (digits -i - 1));
 		
 		if (cur_digit >= 'A' && cur_digit <= 'F') {
-			cur_digit -= 0x37
+			cur_digit -= 0x37;
 		}
 		else if (cur_digit >= '0' && cur_digit <= '9') {
 			cur_digit -= 0x30;

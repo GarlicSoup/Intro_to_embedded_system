@@ -24,9 +24,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "memory.h"
-#include "stats.h"
+#include "course1.h"
 #include "data.h"
-
+#include "stats.h"
 
 int main(){
     #ifdef COURSE1

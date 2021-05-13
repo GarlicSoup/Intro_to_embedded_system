@@ -26,7 +26,7 @@
  * @param array: The sorted 32-bit word
  * @return: statistics of the word
  */
-void print_statistics(unsigned char arr[], int array_length);
+void print_statistics(uint8_t arr[], uint8_t array_length);
 
 
 /**
@@ -37,7 +37,7 @@ void print_statistics(unsigned char arr[], int array_length);
  * 
  * @return: prints the array to the sceen
  */
-void print_array(unsigned char arr[], int array_length);
+void print_array(uint8_t arr[], uint8_t array_length);
 
 
 /**
@@ -48,7 +48,7 @@ void print_array(unsigned char arr[], int array_length);
  * 
  * @return median value of the array
  */ 
-int find_median(unsigned char arr[], int array_length);
+uint8_t find_median(uint8_t arr[], uint8_t array_length);
 
 
 /**
@@ -59,7 +59,7 @@ int find_median(unsigned char arr[], int array_length);
  * 
  * @return mean value of the array
  */ 
-int find_mean(unsigned char arr[], int array_length);
+uint8_t find_mean(uint8_t arr[], uint8_t array_length);
 
 
 /**
@@ -70,7 +70,7 @@ int find_mean(unsigned char arr[], int array_length);
  * 
  * @return maximum value of the array
  */ 
-unsigned char find_maximum(unsigned char arr[], int array_length);
+uint8_t find_maximum(uint8_t arr[], uint8_t array_length);
 
 
 /**
@@ -81,7 +81,7 @@ unsigned char find_maximum(unsigned char arr[], int array_length);
  * 
  * @return minimum value of the array
  */ 
-unsigned char find_minimum(unsigned char arr[], int array_length);
+uint8_t find_minimum(uint8_t arr[], uint8_t array_length);
 
 
 /**
@@ -92,7 +92,7 @@ unsigned char find_minimum(unsigned char arr[], int array_length);
  * 
  * @return variables with swapped values
  */
-void swap_char(unsigned char *a, unsigned char *b);
+void swap_char(uint8_t *a, uint8_t *b);
 
 
 /**
@@ -104,7 +104,7 @@ void swap_char(unsigned char *a, unsigned char *b);
  * 
  * @return min heap from the current node
  */
-void heapify_max(unsigned char arr[], int array_length, int root);
+void heapify_max(uint8_t arr[], uint8_t array_length, uint8_t root);
 
 
 /**
@@ -116,7 +116,7 @@ void heapify_max(unsigned char arr[], int array_length, int root);
  * 
  * @return min heap from the current node
  */
-void heapify_min(unsigned char arr[], int array_length, int root);
+void heapify_min(uint8_t arr[], uint8_t array_length, uint8_t root);
 
 
 /**
@@ -127,6 +127,6 @@ void heapify_min(unsigned char arr[], int array_length, int root);
  * 
  * @return a sorted array
  */ 
-void sort_array(unsigned char array[], int array_length);
+void sort_array(uint8_t arr[], uint8_t array_length);
 
 #endif /* __STATS_H__ */

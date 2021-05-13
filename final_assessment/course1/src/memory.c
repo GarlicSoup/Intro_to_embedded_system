@@ -21,6 +21,8 @@
  *
  */
 #include "memory.h"
+#include <stdlib.h>
+#include <stdint.h>
 
 /***********************************************************
  Function Definitions
@@ -76,7 +78,7 @@ uint8_t * my_memzero(uint8_t * src, size_t length) {
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length) {
-	uint8_t *temp;
+	uint8_t *temp = src;
 	for (size_t i=0; i<length/2; i++) {
 		*temp = *(src+i);
 		*(src+i) = *(src+length-i);
@@ -86,14 +88,14 @@ uint8_t * my_reverse(uint8_t * src, size_t length) {
 }
 
 int32_t * reserve_words(size_t length) {
-	int32_t dym_ptr = malloc(length*sizeof(int32_t));
+	int32_t * dym_ptr = malloc(length*sizeof(int32_t));
 	if (dym_ptr == NULL) {
 		return NULL;
 	}
 	return dym_ptr;
 }
 
-void free_words(int32_t *src) {
+void free_words(uint32_t *src) {
 	free(src);
 	return;
 }

@@ -11,20 +11,20 @@
 
 # Source Paths
 ifeq ($(PLATFORM), MSP432)
-        SOURCES = 	/src/main.c \
-					/src/memory.c \
-				  	/src/stats.c \
-					/src/data.c \
-					/src/course1.c 		
-					/src/interrupts_msp432p401r_gcc.c \
-					/src/startup_msp432p401r_gcc.c \
-					/src/system_msp432p401r.c
+        SOURCES = 	./src/main.c \
+					./src/memory.c \
+				  ./src/stats.c \
+					./src/data.c \
+					./src/course1.c 		
+					./src/interrupts_msp432p401r_gcc.c \
+					./src/startup_msp432p401r_gcc.c \
+					./src/system_msp432p401r.c
 else 
-        SOURCES = 	/src/main.c \
-					/src/memory.c \
-					/src/stats.c \
-					/src/data.c \
-					/src/course1.c 				  
+        SOURCES = 	./src/main.c \
+					./src/memory.c \
+					./src/stats.c \
+					./src/data.c \
+					./src/course1.c 				  
 endif
 
 # Include Paths
@@ -33,5 +33,5 @@ ifeq ($(PLATFORM), MSP432)
                    -I /include/CMSIS \
                    -I /include/msp432
 else 
-        INCLUDES = -I /include/common 
+        INCLUDES = -I /include/common
 endif

@@ -33,8 +33,31 @@
 #------------------------------------------------------------------------------
 include sources.mk
 
+# -c  Compile and Assemble File, Do Not Link
+# -o <FILE> Compile, Assemble, and Link to OUTPUT_FILE
+# -g  Generate Debugging Information in Executable
+# -Wall  Enable All Warning Messages
+# -Werror  Treat All Warnings as Errors
+# -I<DIR>  Include this <DIR> to look for header files
+# -ansi -std=STANDARD  Which standard version to use (ex: c89, c99)
+# -v  Verbose output form GCC
+
 # Platform Overrides
 PLATFORM = HOST
+SRC_DIR := ./src
+OBJ_DIR := ./obj
+INC_DIR := ./include
+
+SOURCES = 	$(SRC_DIR)/main.c \
+			$(SRC_DIR)/memory.c \
+			$(SRC_DIR)/stats.c \
+			$(SRC_DIR)/data.c \
+			$(SRC_DIR)/course1.c 
+INCLUDES = -I include/common/
+
+# Compile time switches
+COURSE1 = false
+VERBOSE = false
 
 # General flags for both platforms.
 G_FLAGS = -std=c99 \
@@ -52,8 +75,7 @@ EXTRA = -mthumb \
 		-mfloat-abi=hard \
 		-mfpu=fpv4-sp-d16
 
-
-TARGET = c1m2
+TARGET = final_assesment
 
 ifeq ($(PLATFORM), MSP432)
 	# Compiler Flags & Defines
@@ -73,12 +95,21 @@ ifeq ($(PLATFORM), MSP432)
 else
 	# Compiler Flags & Defines
 	CC = gcc
-	LD = ld
 	CFLAGS = $(G_FLAGS)
 	CPPFLAGS = -DHOST $(INCLUDES)
 	LDFLAGS = -Wl,-Map=$(TARGET).map
 	OBJDUMP = objdump
 	SIZE = size
+endif
+
+# IF COURSE1 is defined, add a flag
+ifeq ($(COURSE1), true)
+	CPPFLAGS += -DCOURSE1
+endif
+
+# IF VERBOSE is defined, add a flag
+ifeq ($(VERBOSE), true)
+	CPPFLAGS += -DVERBOSE
 endif
 
 # Building Object file (file.o)
@@ -115,11 +146,15 @@ compile-all: $(OBJS)
 .PHONY: build
 build: $(TARGET).out  $(TARGET).asm
 
-
-$(TARGET).out: $(OBJS) $(DEPS) 
+$(TARGET).out: $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) -o $@ $(OBJS)
 	$(SIZE) $(TARGET).out
 
+# Build all and run file
+.PHONY: run
+run: $(TARGET).out
+	./$(TARGET).out
+
 .PHONY: clean
 clean:
-	rm -f $(TARGET).asm $(FILES) $(TARGET).out $(TARGET).map $(PREPRO) $(ASMS) $(DEPS) $(OBJS) $(FILES)
+	rm -f $(TARGET).asm $(TARGET).out $(TARGET).map .src/{FILES}
