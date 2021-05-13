@@ -53,8 +53,15 @@ void clear_all(char * ptr, unsigned int size){
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length) {
 	uint8_t *d = dst;
 	uint8_t *s = src;
-	for (size_t i = 0; i<length; i++) {
-		*(d+i) = *(s+i);
+	if (d<s) {
+		for (size_t i = 0; i<length; i++) {
+			*(d+i) = *(s+i);
+		}
+	}
+	else {
+		for (size_t i = 0; i<length; i++) {
+			*(d+length-i-1) = *(s+length-i-1);
+		}
 	}
 	return dst;
 }
@@ -78,11 +85,11 @@ uint8_t * my_memzero(uint8_t * src, size_t length) {
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length) {
-	uint8_t *temp = src;
+	uint8_t temp;
 	for (size_t i=0; i<length/2; i++) {
-		*temp = *(src+i);
-		*(src+i) = *(src+length-i);
-		*(src+length-i) = *temp;
+		temp = *(src+i);
+		*(src+i) = *(src+length-i-1);
+		*(src+length-i-1) = temp;
 	}
 	return src;
 }

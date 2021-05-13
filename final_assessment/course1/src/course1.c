@@ -326,11 +326,11 @@ int8_t test_reverse()
     if (set[i] != copy[MEM_SET_SIZE_B - i - 1])
     {
       ret = TEST_ERROR;
+			printf("TEST_ERROR: test_reverse()2\n");
     }
   }
 
   free_words( (uint32_t*)copy );
-	printf("TEST_ERROR: test_reverse()2\n");
   return ret;
 }
 
